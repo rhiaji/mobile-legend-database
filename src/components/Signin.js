@@ -56,6 +56,12 @@ function Signin() {
                     >
                         Sign In
                     </button>
+                    <p className="mt-2">
+                        No account?
+                        <a href="#" className="ml-1 hover:text-blue-500">
+                            <u>Sign up</u>
+                        </a>
+                    </p>
                 </form>
             </div>
         </div>

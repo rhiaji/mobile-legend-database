@@ -2,7 +2,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faKhanda, faDatabase, faRightToBracket, faRightFromBracket, faBars, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
+import Database from '@/components/Database'
 import Signin from '@/components/Signin'
+import Signup from '@/components/Signup'
 
 export default function Home() {
     const [menu, setMenu] = useState(false)
@@ -12,21 +14,19 @@ export default function Home() {
             {/* Menu Toggle Button (Visible only on small screens) */}
             <FontAwesomeIcon
                 icon={faBars}
-                height={20}
-                width={20}
-                className={`text-white p-3 text-2xl sm:hidden ${menu ? 'hidden' : 'block'} cursor-pointer`}
+                className={`text-white absolute top-3 left-3 text-2xl lg:hidden ${menu ? 'hidden' : 'block'} cursor-pointer`}
                 onClick={() => setMenu(true)}
             />
 
             {/* Navigation Menu */}
-            <nav className={`w-64 h-screen bg-white p-5 ${menu ? 'block' : 'hidden'} sm:block`}>
+            <nav className={`w-64 h-screen bg-white p-5 ${menu ? 'block' : 'hidden'} lg:block`}>
                 <div className="flex justify-end text-xl">
                     {/* Close Menu Button (Visible only when the menu is open) */}
                     <FontAwesomeIcon
                         icon={faArrowLeft}
                         height={35}
                         width={35}
-                        className="hover:text-gray-500 cursor-pointer sm:hidden"
+                        className="hover:text-gray-500 cursor-pointer lg:hidden"
                         onClick={() => setMenu(false)}
                     />
                 </div>
@@ -51,6 +51,8 @@ export default function Home() {
             </nav>
             <div className="w-full">
                 <Signin />
+                <Signup />
+                <Database />
             </div>
         </main>
     )
