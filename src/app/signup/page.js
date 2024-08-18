@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faKhanda, faRightToBracket, faBars, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-import Signin from '@/components/Signin'
+import Signup from '@/components/Signup'
 
 export default function Home() {
     const [menu, setMenu] = useState(false)
@@ -29,10 +29,6 @@ export default function Home() {
                     />
                 </div>
                 <ul className="flex flex-col gap-4">
-                    <li className="flex gap-2 items-center text-xl font-semibold hover:text-gray-500 cursor-pointer">
-                        <FontAwesomeIcon icon={faKhanda} height={25} width={25} />
-                        Heroes
-                    </li>
                     <a href="/">
                         <li className="flex gap-2 items-center text-xl font-semibold hover:text-gray-500 cursor-pointer">
                             <FontAwesomeIcon icon={faRightToBracket} height={25} width={25} />
@@ -42,7 +38,7 @@ export default function Home() {
                 </ul>
             </nav>
             <div className="w-full">
-                <Signin />
+                <Signup />
             </div>
         </main>
     )

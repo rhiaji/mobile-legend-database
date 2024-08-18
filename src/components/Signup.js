@@ -87,7 +87,7 @@ function Signup() {
                     </button>
                     <p className="mt-2">
                         Already have an account?
-                        <a href="#" className="ml-1 hover:text-blue-500">
+                        <a href="/" className="ml-1 hover:text-blue-500">
                             <u>Sign In</u>
                         </a>
                     </p>
