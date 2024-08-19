@@ -1,31 +1,36 @@
 import React, { useState } from 'react'
+import { registerAccount } from '@/utils/sign'
 
 function Signup() {
-    const [name, setName] = useState('')
-    const [birthday, setBirtday] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+    const [formData, setFormData] = useState({
+        name: '',
+        birthday: '',
+        email: '',
+        password: '',
+    })
+    const [notif, setNotif] = useState('')
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        // Simple validation (you can replace this with more robust validation or API call)
-        if (!email || !password) {
-            setError('Please fill in all fields.')
-            return
-        }
-        setError('')
-        // Handle sign-in logic (e.g., API call)
-
-        alert(`name:${name} birthday:${birthday} email:${email}`)
-        console.log('Email:', email)
-        console.log('Password:', password)
+    const handleInputChange = (e) => {
+        const { name, value } = e.target
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }))
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const result = await registerAccount(formData)
+        alert(result.message)
+        console.log(formData) // For debugging purposes
+    }
+
     return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="w-full max-w-md p-8 bg-white rounded shadow-md">
                 <h2 className="mb-6 text-2xl font-semibold text-center">Create Account</h2>
-                {error && <div className="mb-4 text-sm text-red-500">{error}</div>}
+                {notif && <div className="mb-4 text-sm text-red-500">{notif}</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label className="block mb-1 text-sm font-medium text-gray-700" htmlFor="name">
@@ -33,9 +38,10 @@ function Signup() {
                         </label>
                         <input
                             id="name"
+                            name="name"
                             type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={formData.name}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
                             required
                         />
@@ -46,9 +52,10 @@ function Signup() {
                         </label>
                         <input
                             id="birthday"
+                            name="birthday"
                             type="date"
-                            value={birthday}
-                            onChange={(e) => setBirtday(e.target.value)}
+                            value={formData.birthday}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
                             required
                         />
@@ -59,9 +66,10 @@ function Signup() {
                         </label>
                         <input
                             id="email"
+                            name="email"
                             type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.email}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
                             required
                         />
@@ -72,9 +80,10 @@ function Signup() {
                         </label>
                         <input
                             id="password"
+                            name="password"
                             type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={formData.password}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
                             required
                         />

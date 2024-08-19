@@ -1,21 +1,46 @@
 import React, { useState } from 'react'
+import CryptoJS from 'crypto-js'
+import { getAccount } from '@/utils/sign'
 
 function Signin() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        // Simple validation (you can replace this with more robust validation or API call)
+
+        // Simple validation
         if (!email || !password) {
             setError('Please fill in all fields.')
             return
         }
-        setError('')
-        // Handle sign-in logic (e.g., API call)
-        console.log('Email:', email)
-        console.log('Password:', password)
+
+        try {
+            const result = await getAccount(email)
+
+            if (!result.user) {
+                setError('User not found')
+                return
+            }
+
+            const encryptedStoredPassword = result.user.password
+            const secretKey = process.env.NEXT_PUBLIC_REACT_PASS_ENCRYPT
+
+            // Decrypt the stored password
+            const decryptedStoredPassword = CryptoJS.AES.decrypt(encryptedStoredPassword, secretKey).toString(CryptoJS.enc.Utf8)
+
+            // Compare the decrypted stored password with the provided password
+            if (decryptedStoredPassword === password) {
+                alert('Signed in successfully')
+                // Handle successful sign-in (e.g., redirect to dashboard)
+            } else {
+                setError('Incorrect password')
+            }
+        } catch (err) {
+            console.error('Error during sign-in:', err)
+            setError('An error occurred during sign-in.')
+        }
     }
 
     return (
