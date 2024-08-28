@@ -2,6 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faKhanda, faRightToBracket, faBars, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
+import Heroes from '@/components/Heroes'
 import Signin from '@/components/Signin'
 
 export default function Home() {
@@ -42,6 +43,7 @@ export default function Home() {
                 </ul>
             </nav>
             <div className="w-full">
+                <Heroes />
                 <Signin />
             </div>
         </main>

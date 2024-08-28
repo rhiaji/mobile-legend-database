@@ -88,12 +88,15 @@ function Database() {
                                     required
                                 >
                                     <option value="" disabled>
-                                        Select your class
+                                        Select class
                                     </option>
                                     <option value="marksman">Marksman</option>
-                                    <option value="jungler">Jungler</option>
-                                    <option value="roamer">Roamer</option>
-                                    <option value="roamer">None</option>
+                                    <option value="fighter">Fighter</option>
+                                    <option value="tank">Tank</option>
+                                    <option value="assassin">Assassin</option>
+                                    <option value="mage">Mage</option>
+                                    <option value="support">Support</option>
+                                    <option value="none">None</option>
                                 </select>
                                 <select
                                     id="class"
@@ -106,8 +109,11 @@ function Database() {
                                         Select class
                                     </option>
                                     <option value="marksman">Marksman</option>
-                                    <option value="jungler">Jungler</option>
-                                    <option value="roamer">Roamer</option>
+                                    <option value="fighter">Fighter</option>
+                                    <option value="tank">Tank</option>
+                                    <option value="assassin">Assassin</option>
+                                    <option value="mage">Mage</option>
+                                    <option value="support">Support</option>
                                     <option value="none">None</option>
                                 </select>
                             </div>
@@ -125,10 +131,11 @@ function Database() {
                                     <option value="" disabled>
                                         Select Lane
                                     </option>
-                                    <option value="Gold">Gold</option>
-                                    <option value="Exp">Exp</option>
-                                    <option value="Jungle">Jungle</option>
-                                    <option value="Roam">Roam</option>
+                                    <option value="gold">Gold</option>
+                                    <option value="mid">Mid</option>
+                                    <option value="exp">Exp</option>
+                                    <option value="jungle">Jungle</option>
+                                    <option value="roamer">Roamer</option>
                                 </select>
                             </div>
                             <div className="mb-4">
